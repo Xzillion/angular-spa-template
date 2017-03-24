@@ -1,0 +1,16 @@
+<div class="home">
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand">angularSpa</a></div>
+            <div class="navbar-collapse collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/home/pageOne">pageOne</a></li>
+                    <li><a ui-sref="home.pageTwo({params:'pageTwo'})" ui-sref-active="active">pageTwo</a></li>
+                    <li><a ng-click="bll.funcSet.toThree()">pageThree</a></li>
+                    <li><a ng-click="bll.funcSet.toFour()">pageFour</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

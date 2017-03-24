@@ -1,0 +1,3 @@
+define(['angularSpa'], function (app) {
+
+});

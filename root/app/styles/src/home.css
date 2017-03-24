@@ -1,0 +1,37 @@
+.navbar-nav li {
+  cursor: pointer;
+}
+.text-view {
+  margin-top: 200px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+}
+.page-four h1 {
+  text-align: center;
+}
+.page-four .nav-stacked {
+  display: inline-block;
+  width: 10%;
+  text-align: center;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  vertical-align: top;
+}
+.page-four .nav-stacked a.active {
+  color: #fff;
+  background-color: #4f4cbb;
+}
+.page-four .view-content {
+  display: inline-block;
+  width: 88%;
+  min-height: 400px;
+  text-align: center;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  vertical-align: top;
+}
+.page-four .view-content .iconfont {
+  font-size: 80px;
+  color: #cdcdcd;
+}
