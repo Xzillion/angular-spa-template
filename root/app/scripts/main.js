@@ -7,10 +7,19 @@ require.config({
     paths: {
         'angular': 'libs/angular/angular',
         'uiRouter': 'libs/angular-ui-router/angular-ui-router',
+        "angularSanitize": "libs/angular-sanitize/angular-sanitize",
+        "uiBootstrap": "libs/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min",
+        "jQBootstrap": "libs/bootstrap/dist/js/bootstrap.min",
         'jQuery': 'libs/jquery/jquery',
         "angularSpa": 'app',
         'myDirectives': 'directives/myDirectives',
         'myFilters': 'filters/myFilters',
+        'apiHandler': 'services/apiHandler',
+        'dialogService': 'services/dialogService',
+        'httpService': 'services/httpService',
+        'uiHandler': 'services/uiHandler',
+        'config': "config",
+        'apiConfig':'services/apiConfig',
         'homeCtrl': 'controllers/homeCtrl',
         'pageOneCtrl': 'controllers/one/pageOneCtrl',
         'pageTwoCtrl': 'controllers/two/pageTwoCtrl',
@@ -32,6 +41,18 @@ require.config({
             deps: ['angular'],
             exports: "uiRouter"
         },
+        "angularSanitize": {
+            deps: ['angular'],
+            exports: "angularSanitize"
+        },
+        "uiBootstrap": {
+            deps: ['angular', 'angularSanitize'],
+            exports: "uiBootstrap"
+        },
+        "jQBootstrap": {
+            deps: ['jQuery'],
+            exports: "jQBootstrap"
+        },
 
     }
 });
@@ -42,10 +63,19 @@ require(
     [
         "angular",
         "uiRouter",
+        "angularSanitize",
         "angularSpa",
+        "uiBootstrap",
+        "jQBootstrap",
         "jQuery",
         "myDirectives",
         "myFilters",
+        'apiHandler',
+        'dialogService',
+        'httpService',
+        'uiHandler',
+        'config',
+        'apiConfig',
         "homeCtrl",
         "pageOneCtrl",
         "pageTwoCtrl",
