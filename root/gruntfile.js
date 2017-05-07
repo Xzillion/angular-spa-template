@@ -1,8 +1,8 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),//依赖文件
-		
-		dirs: {
+
+        dirs: {
             src: 'app',//源路径
             dest: 'dist/<%= pkg.name %>'//目标路径
         },
@@ -10,29 +10,29 @@ module.exports = function (grunt) {
         clean: {
             all: ['dist/**', 'dist/*.*']//清理压缩存放路径文件
         },
-		
-		copy: {
+
+        copy: {
             images: {//复制图片到目标路径
                 files: [
                     {expand: true, cwd: '<%= dirs.src %>/images/', src: ['**'], dest: '<%= dirs.dest %>/images/'}
                 ]
             },
-			views: {//复制视图文件到目标路径
+            views: {//复制视图文件到目标路径
                 files: [
                     {expand: true, cwd: '<%= dirs.src %>/views/', src: ['**'], dest: '<%= dirs.dest %>/views/'}
                 ]
             },
-			root: {//复制根路径文件到目标路径
+            root: {//复制根路径文件到目标路径
                 files: [
                     {expand: true, cwd: '<%= dirs.src %>/', src: ['*.html', '*.txt'], dest: '<%= dirs.dest %>/'}
                 ]
             },
-			config: {//复制配置文件到目标路径
+            config: {//复制配置文件到目标路径
                 files: [
                     {expand: true, cwd: '<%= dirs.src %>/scripts/', src: ['config.js'], dest: '<%= dirs.dest %>/scripts/'}
                 ]
             },
-			requirejs: {//复制requireJs到目标路径
+            requirejs: {//复制requireJs到目标路径
                 files: [
                     {expand: true, cwd: '<%= dirs.src %>/scripts/libs/requirejs/', src: ['require.js'], dest: '<%= dirs.dest %>/scripts/libs/requirejs/'}
                 ]
@@ -42,10 +42,10 @@ module.exports = function (grunt) {
         requirejs: {//压缩js文件
             main: {
                 options: {
-					baseUrl:'<%= dirs.src %>/scripts',
+                    baseUrl:'<%= dirs.src %>/scripts',
                     name: "main",
                     optimize: "uglify",
-					uglify: {
+                    uglify: {
                         mangle: false
                     },
                     mainConfigFile: "<%= dirs.src %>/scripts/main.js",
@@ -53,25 +53,25 @@ module.exports = function (grunt) {
                 }
             }
         },
-		
-		concat: {//打包css文件
-            css: {  
+
+        concat: {//打包css文件
+            css: {
                 src: ['<%= dirs.src %>/scripts/libs/bootstrap/dist/css/bootstrap.min.css',
-				      '<%= dirs.src %>/scripts/libs/bootstrap/dist/css/bootstrap-datepicker.min.css',
-				      '<%= dirs.src %>/styles/src/*.css'],
+                    '<%= dirs.src %>/scripts/libs/bootstrap/dist/css/bootstrap-datepicker.min.css',
+                    '<%= dirs.src %>/styles/src/*.css'],
                 dest: '<%= dirs.dest %>/styles/min/main.min.css'
-            }  
+            }
         },
-		
+
         cssmin: {//压缩css文件
-            css: {  
+            css: {
                 src: '<%= dirs.dest %>/styles/min/main.min.css',
-                dest: '<%= dirs.dest %>/styles/min/main.min.css'  
-            }  
+                dest: '<%= dirs.dest %>/styles/min/main.min.css'
+            }
         },
-		
-		filerev: {//md5替换文件名防缓存
-			options: {
+
+        filerev: {//md5替换文件名防缓存
+            options: {
                 algorithm: 'md5',
                 length: 8
             },
@@ -79,44 +79,44 @@ module.exports = function (grunt) {
                 src: '<%= dirs.dest %>/styles/min/main.min.css',
                 dest: '<%= dirs.dest %>/styles/min/'
             },
-			js: {
-				src: '<%= dirs.dest %>/scripts/main.min.js',
-			    dest: '<%= dirs.dest %>/scripts/'
-			}
+            js: {
+                src: '<%= dirs.dest %>/scripts/main.min.js',
+                dest: '<%= dirs.dest %>/scripts/'
+            }
         },
-		
-		usemin: {//设置md5命名之后的静态资源路径
+
+        usemin: {//设置md5命名之后的静态资源路径
             html: ['<%= dirs.dest %>/index.html']
         },
-		
-		imagemin: {//压缩图片
-            img: {  
-                options: {  
+
+        imagemin: {//压缩图片
+            img: {
+                options: {
                     optimizationLevel: 3
-                },  
-                files: [  
-                    {  
-                        expand: true,  
-                        cwd: '<%= dirs.dest %>/images/',  
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= dirs.dest %>/images/',
                         src: ['**/*.{png,jpg,jpeg}'],
-                        dest: '<%= dirs.dest %>/images/'  
-                    }  
-                ]  
-            }  
+                        dest: '<%= dirs.dest %>/images/'
+                    }
+                ]
+            }
         },
 
         htmlmin: {//压缩html文件
-			html: {
-				options: {
-					removeComments: true,
-					collapseWhitespace: true
-				},
-				files: [
-				    {expand: true, cwd: '<%= dirs.dest %>/views/', src: ['**/*.html'], dest: '<%= dirs.dest %>/views/'},
-				    {expand: true, cwd: '<%= dirs.dest %>/', src: ['*.html'], dest: '<%= dirs.dest %>/'}
-				]
-			}
-		},
+            html: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: [
+                    {expand: true, cwd: '<%= dirs.dest %>/views/', src: ['**/*.html'], dest: '<%= dirs.dest %>/views/'},
+                    {expand: true, cwd: '<%= dirs.dest %>/', src: ['*.html'], dest: '<%= dirs.dest %>/'}
+                ]
+            }
+        },
         //less编译任务
         less: {
             main: {
@@ -144,14 +144,14 @@ module.exports = function (grunt) {
         }
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-css');
-	grunt.loadNpmTasks('grunt-filerev');
-	grunt.loadNpmTasks('grunt-usemin');
-	grunt.loadNpmTasks('grunt-contrib-imagemin');
-	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-css');
+    grunt.loadNpmTasks('grunt-filerev');
+    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default', ['clean', 'copy', 'requirejs', 'concat', 'cssmin', 'filerev', 'usemin', 'imagemin', 'htmlmin']);
